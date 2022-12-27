@@ -16,8 +16,8 @@ class ImagePredictor:
         class_probability = prediction[0, class_index]
 
         print('Predicted class:', self.class_names[class_index])
-        # print('Probability of each class:')
-        # for i in range(len(self.class_names)):
-        #     print(self.class_names[i], ':', prediction[0, i])
+        print('Probability of each class:')
+        for i in range(len(self.class_names)):
+            print(self.class_names[i], ':', prediction[0, i])
 
         return class_probability

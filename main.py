@@ -18,7 +18,7 @@ if not os.path.exists(data_dir):
     convert_all_wav_to_png('C:/dev/CI642/Music_Genre_Classification/Data/genres_original')
 
 model_file = 'model.h5'
-epochs = 5
+epochs = 50
 
 print("Initializing...")
 data_loader = DataLoader(data_dir)
@@ -59,5 +59,10 @@ else:
 
 print("Preparing prediction...")
 image_predictor = ImagePredictor(model, class_names)
-image = plt.imread(convert_wav_to_png('C:/dev/CI642/Music_Genre_Classification/Data/prediction_data/reggae.test.wav'))
+image = plt.imread(convert_wav_to_png('C:/dev/CI642/Music_Genre_Classification/Data/prediction_data/jazz_test.wav'))
 image_predictor.predict(image)
+
+# image_predictor = ImagePredictor(model, class_names)
+# for i in range(10, 99):
+#     image = plt.imread(f'C:/dev/CI642/Music_Genre_Classification/Data/genres_original_IMAGES/classical/classical.000{i}.png')
+#     image_predictor.predict(image)
