@@ -18,7 +18,7 @@ if not os.path.exists(data_dir):
     convert_all_wav_to_png('C:/dev/CI642/Music_Genre_Classification/Data/genres_original')
 
 model_file = 'model.h5'
-epochs = 50
+epochs = 20
 
 print("Initializing...")
 data_loader = DataLoader(data_dir)
