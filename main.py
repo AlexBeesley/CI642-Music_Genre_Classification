@@ -8,6 +8,7 @@ from Model.ModelTrainer import ModelTrainer
 from Utils.ImagePredictor import ImagePredictor
 from Utils.AudioToImage import convert_all_wav_to_png, convert_wav_to_png
 from Utils.DataVisualisation import DataVisualisation
+from Utils.KFoldCrossValidator import KFoldCrossValidator
 
 # INFO log level messages not printed, set to 0 to enable INFO logs
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
@@ -57,12 +58,16 @@ if not model:
 else:
     print("Model found.")
 
+print("Running cross fold validation...")
+validator = KFoldCrossValidator(model, X_train, Y_train, k=10)
+k_score = validator.validate()
+print(f"cross fold validation score: {k_score}")
+
 print("Preparing prediction...")
 image_predictor = ImagePredictor(model, class_names)
-image = plt.imread(convert_wav_to_png('C:/dev/CI642/Music_Genre_Classification/Data/prediction_data/jazz_test.wav'))
-image_predictor.predict(image)
-
-# image_predictor = ImagePredictor(model, class_names)
-# for i in range(10, 99):
-#     image = plt.imread(f'C:/dev/CI642/Music_Genre_Classification/Data/genres_original_IMAGES/classical/classical.000{i}.png')
-#     image_predictor.predict(image)
+target_folder = 'C:/dev/CI642/Music_Genre_Classification/Data/prediction_data'
+target_files = os.listdir(target_folder)
+for file in target_files:
+    print(f'\tPredicting for {file}')
+    image = plt.imread(convert_wav_to_png(f'C:/dev/CI642/Music_Genre_Classification/Data/prediction_data/{file}'))
+    image_predictor.predict(image)

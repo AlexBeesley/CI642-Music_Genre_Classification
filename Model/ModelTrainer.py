@@ -17,18 +17,21 @@ class ModelTrainer:
 
         if data_augmentation:
             datagen = tf.keras.preprocessing.image.ImageDataGenerator(
-                rotation_range=20,
                 horizontal_flip=True,
-                width_shift_range=0.2,
-                height_shift_range=0.2,
-                zoom_range=0.2)
+                vertical_flip=True)
             datagen.fit(X_train)
-            history = self.model.fit(datagen.flow(X_train, Y_train, batch_size=batch_size), epochs=epochs,
-                                     validation_data=(X_val, Y_val), callbacks=[early_stopping])
-        else:
-            history = self.model.fit(X_train, Y_train, batch_size=batch_size,
+            history = self.model.fit(datagen.flow(X_train, Y_train, batch_size=batch_size),
                                      epochs=epochs,
                                      validation_data=(X_val, Y_val),
-                                     shuffle=False, callbacks=[early_stopping])
-        return history
+                                     shuffle=False,
+                                     callbacks=[early_stopping])
 
+        else:
+            history = self.model.fit(X_train,
+                                     Y_train,
+                                     batch_size=batch_size,
+                                     epochs=epochs,
+                                     validation_data=(X_val, Y_val),
+                                     shuffle=False,
+                                     callbacks=[early_stopping])
+        return history
