@@ -1,13 +1,7 @@
-## Music_Genre_Classification
-This repo contains the source code for the CI642.
+### Music Genre Classification
+This repo contains the source code for the CI642 Advance Artificial Intelligence module.
 
-#### Project dependencies:
+The dataset used can be found here: [GTZAN](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification)
 
--   [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification)
--   Tensorflow
--   Keras
--   SciKit Learn
--   NumPy
--   Pyplot
-
+#### [Source code on GitHub](https://github.com/AlexBeesley/CI642-Music_Genre_Classification)
 #### Author: [David (Alex) Beesley](https://www.github.com/AlexBeesley)
